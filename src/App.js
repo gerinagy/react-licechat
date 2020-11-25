@@ -22,20 +22,23 @@ firebase.initializeApp({
 const auth = firebase.auth();
 const firestore = firebase.firestore();
 
-const [user] = useAuthState(auth);
 
 
 
 function App() {
+
+  const [user] = useAuthState(auth);
+
   return (
     <div className="App">
       <header className="App-Header">
-
+    
 
       </header>
 
       <section className="App-main">
         {user ? <ChatRoom /> : <SignIn />}
+        
       </section>
     </div>
   );
@@ -44,38 +47,37 @@ function App() {
 
 
 function SignIn() {
+  
   const signInWithGoogle = () => {
     const provider = new firebase.auth.GoogleAuthProvider();
     auth.signInWithPopup(provider);
   }
   
-
-
   return (
     <button onClick={signInWithGoogle}>Sign in with Google</button>
-
-  );
-
-}
-
-function SignOut() {
-  return auth.currentUser && (
-
-    <button onClick={ () => auth.signOut()}>Sign Out</button>
-  );
-}
-
-
-function ChatRoom() {
-
-  const messagesRef = firebase.collection('messages');
-  const query = messagesRef.orderBy('createdAt').limit(25);
-
-  const [messages] = useCollectionData(query, {idField: 'id'});
-
-
-  return(
-    <>
+    
+    );
+    
+  }
+  
+  function SignOut() {
+    return auth.currentUser && (
+      
+      <button onClick={ () => auth.signOut()}>Sign Out</button>
+      );
+    }
+    
+    
+    function ChatRoom() {
+      
+      const messagesRef = firebase.collection('messages');
+      const query = messagesRef.orderBy('createdAt').limit(25);
+      
+      const [messages] = useCollectionData(query, {idField: 'id'});
+      
+      
+      return(
+        <>
       <div>
         {messages && messages.map(msg => <ChatMessage key={msg.id} message={msg} /> )}
       </div>
@@ -87,11 +89,12 @@ function ChatRoom() {
 
 function ChatMessage(props) {
   const { text, uid } = props.message;
-
-
-
+  
+  
+  
   return <p>{text}</p>
 }
+
 
 
 
