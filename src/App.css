@@ -152,3 +152,19 @@ img {
   border-radius: 50%;
   margin: 2px 5px;
 }
+
+
+.sign-out {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+
+.sign-out:hover {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: white;
+  color: black;
+}

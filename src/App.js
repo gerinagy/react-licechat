@@ -6,6 +6,8 @@ import 'firebase/firestore';
 import 'firebase/auth';
 
 
+import { useRef } from 'react';
+
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 
@@ -41,6 +43,7 @@ function App() {
 
       <section className="App-main">
         {user ? <ChatRoom /> : <SignIn />}
+        <SignOut/>
 
       </section>
     </div>
@@ -66,7 +69,7 @@ function SignIn() {
 function SignOut() {
   return auth.currentUser && (
 
-    <button onClick={() => auth.signOut()}>Sign Out</button>
+    <button className="sign-out" onClick={() => auth.signOut()}>Sign Out</button>
   );
 }
 
