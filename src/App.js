@@ -37,13 +37,13 @@ function App() {
   return (
     <div className="App">
       <header className="App-Header">
-
+        <h1>Messages</h1>
+        <SignOut />
 
       </header>
 
       <section className="App-main">
         {user ? <ChatRoom /> : <SignIn />}
-        <SignOut/>
 
       </section>
     </div>
@@ -116,16 +116,16 @@ function ChatRoom() {
       <main>
         {messages && messages.map(msg => <ChatMessage key={msg.id} message={msg} />)}
 
-        <div ref={dummy} ></div>
+        <span ref={dummy} ></span>
 
 
       </main>
 
       <form onSubmit={sendMessage} >
 
-        <input value={formValue} onChange={(e) => setFormValue(e.target.value)} />
+        <input value={formValue} onChange={(e) => setFormValue(e.target.value)} placeholder="Type here" />
 
-        <button type="submit">▶️</button>
+        <button type="submit" disabled={!formValue} >▶️</button>
 
 
       </form>
@@ -144,12 +144,12 @@ function ChatMessage(props) {
   const messageClass = uid === auth.currentUser.uid ? 'sent' : 'received';
 
   return (
-    <div className={'message ${messageClass}'}>
-      <img src="{photoURL}" />
+    <div className={`message ${messageClass}`}>
 
-
+      <img src="{photoURL || 'https://api.adorable.io/avatars/23/abott@adorable.png'}}" alt="no" />
 
       <p>{text}</p>
+
     </div>
   )
 }
