@@ -4,6 +4,7 @@ import './App.css';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
+import 'firebase/analytics';
 
 
 import { useRef } from 'react';
@@ -20,8 +21,10 @@ firebase.initializeApp({
   projectId: "react-livechat-9c29d",
   storageBucket: "react-livechat-9c29d.appspot.com",
   messagingSenderId: "1034760244529",
-  appId: "1:1034760244529:web:ea91f5ac20bf341e0e7410"
-})
+  appId: "1:1034760244529:web:ea91f5ac20bf341e0e7410",
+  measurementId: "G-7YBZ2S785F"
+});
+firebase.analytics();
 
 
 const auth = firebase.auth();
